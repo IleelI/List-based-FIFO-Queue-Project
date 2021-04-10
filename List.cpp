@@ -71,12 +71,12 @@ void List::DeleteEnd() {
 }
 
 //Setters
-void List::SetHead(int value) {
+/*void List::SetHead(int value) {
   head->SetData(value);
 }
 void List::SetTail(int value) {
   tail->SetData(value);
-}
+}*/
 void List::IncreaseListSize() {
   listSize++;
 }
@@ -85,7 +85,7 @@ void List::DecreaseListSize() {
 }
 
 //Getters
-unsigned List::GetListSize() const {
+/*unsigned List::GetListSize() const {
   return listSize;
 }
 Node* List::GetHead() const {
@@ -93,7 +93,7 @@ Node* List::GetHead() const {
 }
 Node* List::GetTail() const {
  return tail;
-}
+}*/
 
 //Logging
 void List::Print(Node* start, Node* end) const {

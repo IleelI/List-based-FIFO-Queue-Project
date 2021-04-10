@@ -9,6 +9,7 @@ private:
   unsigned queueCount;
   void Expand(int value);
   void Replace(int value);
+  Node* DeleteEmptyElement(Node* curr);
 public:
   Queue();
   void Push(int value);
@@ -16,6 +17,7 @@ public:
   void DeleteStart() override;
   void DeleteEnd() override;
   void GarbageSoft();
+  void GarbageHard();
   void SetFirst(Node* node);
   void SetLast(Node* node);
   void IncreaseQueueCount();
@@ -26,7 +28,7 @@ public:
   void PrintQueue() const;
   void PrintQueueCount() const;
   void PrintFullInfo() const;
-  ~Queue();
+  ~Queue() override;
 };
 
 

@@ -12,8 +12,8 @@ public:
   explicit Node(int value);
   void SetData(int value);
   void SetState(bool state);
-  void SetNext(Node* next);
-  void SetPrev(Node* prev);
+  void SetNext(Node* newNext);
+  void SetPrev(Node* newPrev);
   Node* GetPrev() const;
   Node* GetNext() const;
   int GetData() const;

@@ -1,56 +1,46 @@
 #include <iostream>
 #include "Queue.h"
+#define COMMAND_SIZE 255
+
 int main() {
-  auto* q = new Queue();
-  q->Push(10);
-  q->Push(11);
-  q->Push(12);
-  q->PrintBackward();
-  q->PrintQueue();
-  q->InsertStart(1);
-  q->InsertEnd(6);
-  q->InsertStart(2);
-  q->InsertStart(3);
-  q->InsertEnd(5);
-  q->InsertEnd(4);
-  q->PrintBackward();
-  q->PrintQueue();
-  q->Push(13);
-  q->Push(14);
-  q->Push(15);
-  q->Push(16);
-  q->Push(17);
-  q->PrintForward();
-  q->PrintQueue();
-  q->PrintFullInfo();
-
-
-
-  q->DeleteEnd();
-  q->PrintForward();
-  q->PrintQueue();
-  q->PrintFullInfo();
-
-  q->DeleteEnd();
-  q->PrintForward();
-  q->PrintQueue();
-  q->PrintFullInfo();
-
-  std::cout << "START DELETION" << std::endl;
-
-  q->DeleteStart();
-  q->PrintForward();
-  q->PrintQueue();
-  q->PrintFullInfo();
-
-  q->DeleteStart();
-  q->PrintForward();
-  q->PrintQueue();
-  q->PrintFullInfo();
-
-  q->GarbageSoft();
-  q->PrintForward();
-  q->PrintQueue();
-  q->PrintFullInfo();
+  Queue* q = new Queue();
+  char* command = new char[COMMAND_SIZE];
+  int query;
+  while (std::cin >> command)  {
+    if (strcmp(command, "PUSH") == 0) {
+      std::cin >> query;
+      q->Push(query);
+    }
+    else if (strcmp(command, "ADD_BEG")== 0) {
+      std::cin >> query;
+      q->InsertStart(query);
+    }
+    else if (strcmp(command, "ADD_END") == 0) {
+      std::cin >> query;
+      q->InsertEnd(query);
+    }
+    else if (strcmp(command, "POP") == 0)
+      q->Pop();
+    else if (strcmp(command, "GARBAGE_HARD") == 0)
+      q->GarbageHard();
+    else if (strcmp(command, "GARBAGE_SOFT") == 0)
+      q->GarbageSoft();
+    else if (strcmp(command, "DEL_BEG") == 0)
+      q->DeleteStart();
+    else if (strcmp(command, "DEL_END") == 0)
+      q->DeleteEnd();
+    else if (strcmp(command, "PRINT_QUEUE") == 0)
+      q->PrintQueue();
+    else if (strcmp(command, "COUNT") == 0)
+      q->PrintQueueCount();
+    else if (strcmp(command, "SIZE") == 0)
+      q->PrintListSize();
+    else if (strcmp(command, "PRINT_FORWARD") == 0)
+      q->PrintForward();
+    else if (strcmp(command, "PRINT_BACKWARD") == 0)
+      q->PrintBackward();
+  }
+  delete[] command;
+  delete q;
   return 0;
 }

@@ -33,12 +33,12 @@ void Queue::Push(int value) {
   if (listSize == 0) {
     InsertInitial(value);
     head->SetState(true);
-    first = last = head;
+    first = last = tail;
   }
   else if (queueCount == 0) {
-    head->SetState(true);
-    head->SetData(value);
-    first = last = head;
+    tail->SetState(true);
+    tail->SetData(value);
+    first = last = tail;
   }
   else if (queueCount == listSize)
     Expand(value);
@@ -49,8 +49,11 @@ void Queue::Push(int value) {
 
 //Deletion
 void Queue::Pop() {
-  if (listSize == 0 || queueCount == 0)
+  if (listSize == 0 || queueCount == 0) {
+    std::cout << "NULL" << std::endl;
     return;
+  }
+  std::cout << first->GetData() << std::endl;
   first->SetState(false);
   first = first->GetPrev();
   DecreaseQueueCount();
@@ -94,8 +97,10 @@ void Queue::DeleteEnd() {
       head->SetPrev(tail);
       if (tmp->GetState()) {
         DecreaseQueueCount();
-        if (tmp == first || queueCount == 0) // If last element of list if start of queue or sizeOfQueue = 0
+        if (queueCount == 0) // If last element of list if start of queue or sizeOfQueue = 0
           first = last = nullptr;
+        else if (tmp == first)
+          first = first->GetPrev();
         else if (tmp == last) // If last element of list is end of queue.
             last = last->GetNext();
       }
@@ -103,10 +108,50 @@ void Queue::DeleteEnd() {
     listSize--;
   }
 }
+Node* Queue::DeleteEmptyElement(Node* curr) {
+  if (curr == head) {
+    head = head->GetNext();
+    head->SetPrev(tail);
+    tail->SetNext(head);
+  }
+  else if (curr == tail) {
+    tail = tail->GetPrev();
+    tail->SetNext(head);
+    head->SetPrev(tail);
+  }
+  else {
+    Node* next = curr->GetNext();
+    Node* prev = curr->GetPrev();
+    next->SetPrev(prev);
+    prev->SetNext(next);
+  }
+  DecreaseListSize();
+  curr = curr->GetNext();
+  return curr;
+}
+void Queue::GarbageHard() {
+  if (queueCount == 0) {
+    head = tail = nullptr;
+    listSize = 0;
+    delete head;
+    delete tail;
+  }
+  else {
+    Node* curr = head;
+    while (curr != tail) {
+      if (!curr->GetState())
+        curr = DeleteEmptyElement(curr);
+      else
+        curr = curr->GetNext();
+    }
+    if (!curr->GetState())
+      DeleteEmptyElement(curr);
+  }
+}
 
 //Setters
 void Queue::GarbageSoft() {
-  if (queueCount == 0 || listSize == 0)
+  if (listSize == 0)
     return;
   else {
     Node* curr = head;
@@ -119,12 +164,12 @@ void Queue::GarbageSoft() {
       curr->SetData(0);
   }
 }
-void Queue::SetFirst(Node *node) {
+/*void Queue::SetFirst(Node *node) {
   first = node;
 }
 void Queue::SetLast(Node *node) {
   last = node;
-}
+}*/
 void Queue::IncreaseQueueCount() {
   queueCount++;
 }
@@ -133,15 +178,15 @@ void Queue::DecreaseQueueCount() {
 }
 
 //Getters
-unsigned Queue::GetQueueCount() const {
+/*unsigned Queue::GetQueueCount() const {
   return queueCount;
-}
-Node* Queue::GetFirst() const {
+}*/
+/*Node* Queue::GetFirst() const {
   return first;
 }
 Node* Queue::GetLast() const {
   return last;
-}
+}*/
 
 //Logging
 void Queue::PrintQueueCount() const {
@@ -153,20 +198,34 @@ void Queue::PrintQueue() const {
   else {
     Node* curr = first;
     while (curr != last) {
-      std::cout << curr->GetData() << " ";
+      if (curr->GetState())
+        std::cout << curr->GetData() << " ";
       curr = curr->GetPrev();
     }
-    std::cout << curr->GetData() << std::endl;
+    if (curr->GetState())
+      std::cout << curr->GetData() << std::endl;
   }
 }
-void Queue::PrintFullInfo() const {
+/*void Queue::PrintFullInfo() const {
   PrintQueueCount();
   PrintListSize();
-  std::cout << "Head: " << GetHead()->GetData() << std::endl;
-  std::cout << "Tail: " << GetTail()->GetData() << std::endl;
-  std::cout << "First: " << GetFirst()->GetData() << std::endl;
-  std::cout << "Last: " << GetLast()->GetData() << std::endl;
-}
+  if (GetHead())
+    std::cout << "Head: " << GetHead()->GetData() << std::endl;
+  else
+    std::cout << "Head: NULL" << std::endl;
+  if (GetTail())
+    std::cout << "Tail: " << GetTail()->GetData() << std::endl;
+  else
+    std::cout << "Tail: NULL" << std::endl;
+  if (GetFirst())
+    std::cout << "First: " << GetFirst()->GetData() << std::endl;
+  else
+    std::cout << "First: NULL" << std::endl;
+  if (GetLast())
+    std::cout << "Last: " << GetLast()->GetData() << std::endl;
+  else
+    std::cout << "Last: NULL" << std::endl;
+}*/
 Queue::~Queue() {
   first = last = nullptr;
   queueCount = 0;

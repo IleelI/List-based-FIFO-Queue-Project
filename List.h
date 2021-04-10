@@ -25,7 +25,7 @@ public:
   void PrintForward() const;
   void PrintBackward() const;
   void PrintListSize() const;
-  ~List();
+  virtual ~List();
 };
 
 
