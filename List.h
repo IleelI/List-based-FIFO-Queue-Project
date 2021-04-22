@@ -11,8 +11,8 @@ protected:
   void Print(Node* start, Node* end) const;
 public:
   List();
-  void InsertStart(int value);
-  void InsertEnd(int value);
+  virtual void InsertStart(int value);
+  virtual void InsertEnd(int value);
   virtual void DeleteStart();
   virtual void DeleteEnd();
   void SetHead(int value);

@@ -14,20 +14,16 @@ public:
   Queue();
   void Push(int value);
   void Pop();
+  void InsertStart(int value) override;
+  void InsertEnd(int value) override;
   void DeleteStart() override;
   void DeleteEnd() override;
   void GarbageSoft();
   void GarbageHard();
-  void SetFirst(Node* node);
-  void SetLast(Node* node);
   void IncreaseQueueCount();
   void DecreaseQueueCount();
-  Node* GetFirst() const;
-  Node* GetLast() const;
-  unsigned GetQueueCount() const;
   void PrintQueue() const;
   void PrintQueueCount() const;
-  void PrintFullInfo() const;
   ~Queue() override;
 };
 

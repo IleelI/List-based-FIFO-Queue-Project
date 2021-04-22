@@ -6,17 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/List.cpp
-List.h
 /Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/List.h
-iostream
--
-
-/Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/List.h
-Node.h
-/Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/Node.h
-
-/Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/Node.cpp
 Node.h
 /Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/Node.h
 
@@ -31,10 +21,4 @@ iostream
 /Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/Queue.h
 List.h
 /Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/List.h
-
-/Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/main.cpp
-iostream
--
-Queue.h
-/Users/volcent/Documents/Studia/Projekty/AiSD/3. List-Based FIFO Queue/Queue.h
 
